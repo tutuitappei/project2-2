@@ -140,11 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="Keyboard1.cpp" />
-    <ClCompile Include="Keyboard2.cpp" />
+    <ClCompile Include="input\Keyboard1.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PAD.cpp" />
     <ClCompile Include="Puyo.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -153,12 +150,11 @@
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controller.h" />
     <ClInclude Include="details\Vector2.h" />
-    <ClInclude Include="Keyboard1.h" />
-    <ClInclude Include="Keyboard2.h" />
+    <ClInclude Include="input\Controller.h" />
+    <ClInclude Include="input\Inputid.h" />
+    <ClInclude Include="input\Keyboard1.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="PAD.h" />
     <ClInclude Include="Puyo.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Stage.h" />
