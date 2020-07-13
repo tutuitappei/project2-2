@@ -11,10 +11,10 @@ bool Mouse::Setup(int no)
 	if (no <= 0)
 	{
 		_inputTbl = {
-			{InputID::Up,KEY_INPUT_W},
-			{InputID::Down,KEY_INPUT_S},
-			{InputID::Left,KEY_INPUT_A},
-			{InputID::Right,KEY_INPUT_D},
+			{InputID::Up,},
+			{InputID::Down,},
+			{InputID::Left,},
+			{InputID::Right,},
 			{InputID::Btn1,WM_LBUTTONDOWN},
 			{InputID::Btn2,WM_RBUTTONDOWN}
 		};
@@ -22,10 +22,10 @@ bool Mouse::Setup(int no)
 	else
 	{
 		_inputTbl = {
-			{InputID::Up,KEY_INPUT_W},
-			{InputID::Down,KEY_INPUT_S},
-			{InputID::Left,KEY_INPUT_A},
-			{InputID::Right,KEY_INPUT_D},
+			{InputID::Up,},
+			{InputID::Down,},
+			{InputID::Left,},
+			{InputID::Right,},
 			{InputID::Btn1,WM_LBUTTONDOWN},
 			{InputID::Btn2,WM_RBUTTONDOWN}
 		};
