@@ -12,7 +12,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_offset = std::move(offset);
 	_size = std::move(size);
 	init();
-	//puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
+	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
 Stage::Stage():ScreenID(0),_id(0),_color(0x000000)
@@ -44,7 +44,7 @@ void Stage::Updata(void)
 			puyo->Move(data.first);
 		}
 	}
-	//puyo->Updata();
+	puyo->Updata();
 
 }
 

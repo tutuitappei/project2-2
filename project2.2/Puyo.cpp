@@ -1,5 +1,13 @@
 #include "Puyo.h"
 
+Puyo::Puyo()
+{
+}
+
+Puyo::~Puyo()
+{
+}
+
 void Puyo::Move(InputID id)
 {
 	switch (id)
@@ -23,4 +31,8 @@ void Puyo::Move(InputID id)
     default:
         break;
 	}
+}
+
+void Puyo::Updata(void)
+{
 }
