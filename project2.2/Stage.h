@@ -1,15 +1,19 @@
 #pragma once
+#include<vector>
 #include"Vector2.h"
 #include"input/Controller.h"
 #include"Puyo.h"
 
 //class Vector2
 
+#define STAGE_SIZE_X 6
+#define STAGE_SIZE_Y 12
+
 class Stage
 {
 public:
-	Stage(Vector2&& offset, Vector2&& size);
 	Stage();
+	Stage(Vector2&& offset, Vector2&& size);
 	~Stage();
 
 	int GetStageDraw(void);
@@ -24,8 +28,12 @@ private:
 
 	std::unique_ptr<Controller> controller;
 
+	std::vector<int*> _data;
+	std::vector<int> _dataBaase;
+
 	std::unique_ptr<Puyo> puyo;
 	static int _stagecount;
 	int _id;
+	int _color;
 };
 
