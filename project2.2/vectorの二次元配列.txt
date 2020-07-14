@@ -1,0 +1,9 @@
+std::vectorのメモリーを連続させた[5][10]の二次元配列
+std::vector<int> dataBase;
+dataBase.resize(10*5);
+std::vector<int*> data;
+data.resize(5);
+
+
+std::vectorの要素数の変更可能な二次元配列
+std::vector<std::vector<int>> data;

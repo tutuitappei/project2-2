@@ -8,10 +8,13 @@ void Puyo::Move(InputID id)
         //_pos.y -= _size.y
         break;
     case InputID::Down:
+        //_pos.y += _size.y
         break;
     case InputID::Left:
+        //_pos.x -= _size.x
         break;
     case InputID::Right:
+        //_pos.x += _size.x
         break;
     case InputID::Btn1:
         break;

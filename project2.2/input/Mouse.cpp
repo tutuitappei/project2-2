@@ -8,7 +8,7 @@ ContType Mouse::GetType(void)
 
 bool Mouse::Setup(int no)
 {
-	if (no <= 0)
+	/*if (no <= 0)
 	{
 		_inputTbl = {
 			{InputID::Up,},
@@ -29,7 +29,7 @@ bool Mouse::Setup(int no)
 			{InputID::Btn1,WM_LBUTTONDOWN},
 			{InputID::Btn2,WM_RBUTTONDOWN}
 		};
-	}
+	}*/
 
 
 	return true;
