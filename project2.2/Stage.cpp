@@ -15,7 +15,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
-Stage::Stage():ScreenID(0),_id(0),_color(0x000000)
+Stage::Stage():_screenID(0),_id(0),_color(0x000000)
 {
 
 }
@@ -27,7 +27,7 @@ Stage::~Stage()
 
 int Stage::GetStageDraw(void)
 {
-	return ScreenID;
+	return _screenID;
 }
 
 void Stage::Draw(void)
@@ -50,13 +50,13 @@ void Stage::Updata(void)
 
 bool Stage::init(void)
 {
-	ScreenID = MakeScreen(_size.x,_size.y,true );
+	_screenID = MakeScreen(_size.x,_size.y,true );
 	_color = 0x000033 << (16 * _id);
 
 	_dataBaase.resize(STAGE_SIZE_X * STAGE_SIZE_Y);
-	for (int no = 0; no < STAGE_SIZE_Y; no++)
+	for (size_t no = 0; no < STAGE_SIZE_Y; no++)
 	{
-		_data.emplace_back(&_dataBaase[no * STAGE_SIZE_X]);
+		_data.emplace_back(&_dataBaase[no * static_cast<size_t>(STAGE_SIZE_X)]);
 	}
 
 	controller = std::make_unique<Keyboard1>();

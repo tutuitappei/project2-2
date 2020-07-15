@@ -22,7 +22,7 @@ public:
 private:
 	bool init(void);
 
-	int ScreenID;
+	int _screenID;
 	Vector2 _offset;
 	Vector2 _size;
 

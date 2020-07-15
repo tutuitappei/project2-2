@@ -4,7 +4,6 @@
 class main
 {
 public:
-	void Draw(void);
 private:
 };
 

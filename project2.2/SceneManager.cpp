@@ -18,7 +18,6 @@ void SceneManager::Run(void)
 	DrawBox(60, 55, 240, 450, color, false);
 	DrawBox(245, 55, 285, 135, color, false);
 	DrawCircle(pos.x, pos.y + speed * 30, 15, color, true);
-	DrawCircle(pos.x, (pos.y + 30) + speed * 30, 15, color, true);
 	time++;
 
 	Vector2 offset;
