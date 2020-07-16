@@ -4,11 +4,13 @@
 
 enum class PuyoID 
 {
-	NON,
+	Non,
 	Red,
 	Blue,
 	Green,
 	Yellow,
+	Purpule,
+	Wall,
 	MAX
 };
 
@@ -30,7 +32,6 @@ union Dirpermit
 class Puyo
 {
 public:
-	Puyo();
 	Puyo(Vector2 vec,PuyoID id);
 	~Puyo();
 	void Move(InputID id);

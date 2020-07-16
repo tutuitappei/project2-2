@@ -1,10 +1,6 @@
 #include<DxLib.h>
 #include "Puyo.h"
 
-Puyo::Puyo()
-{
-}
-
 Puyo::Puyo(Vector2 vec, PuyoID id)
 {
     _pos = vec;

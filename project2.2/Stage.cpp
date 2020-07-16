@@ -13,7 +13,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_size = std::move(size);
 	_blocksize = 32;
 	init();
-	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::NON);
+	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
 Stage::Stage():_screenID(0),_id(0),_color(0x000000)
