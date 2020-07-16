@@ -33,6 +33,8 @@ private:
 
 	int _blocksize;
 
+	
+
 	std::unique_ptr<Puyo> puyo;
 	static int _stagecount;
 	int _id;
