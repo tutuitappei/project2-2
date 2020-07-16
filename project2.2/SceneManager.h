@@ -1,6 +1,7 @@
 #pragma once
 #include<mutex>
 #include"Vector2.h"
+#include"Stage.h"
 
 #define lpScene SceneManager::GetInstance()
 
@@ -29,6 +30,7 @@ private:
 	const Vector2 screensize;
 	const Vector2 csreenOffset;
 
+	std::unique_ptr<Stage> stage;
 
 	static SceneManager* sta_Instance;
 };

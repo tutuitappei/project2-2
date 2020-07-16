@@ -33,10 +33,22 @@ public:
 	Puyo();
 	Puyo(Vector2 vec,PuyoID id);
 	~Puyo();
-	Vector2 _size;
-	Vector2 _pos;
 	void Move(InputID id);
 	void Updata(void);
+
+	void Draw(void);
+
+	bool SetDirParmit(Dirpermit dirparmit);
+
+	//const Vector2& GetPos(void);
+
+	const Vector2 GetGrid(int size);
 private:
+	Dirpermit _dirparmit;
+
+	Vector2 _size;
+	Vector2 _pos;
+	PuyoID _id;
+
 };
 

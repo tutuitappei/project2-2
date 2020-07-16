@@ -11,8 +11,9 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_stagecount++;
 	_offset = std::move(offset);
 	_size = std::move(size);
+	_blocksize = 32;
 	init();
-	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
+	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::NON);
 }
 
 Stage::Stage():_screenID(0),_id(0),_color(0x000000)
@@ -37,10 +38,15 @@ void Stage::Draw(void)
 void Stage::Updata(void)
 {
 	(*controller)();
+
+	Dirpermit dirparmit;
+	dirparmit.perBit = { 1,1,1,1 };
+
 	for (auto data : controller->GetCntData())
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
+			puyo->SetDirParmit(dirparmit);
 			puyo->Move(data.first);
 		}
 	}
