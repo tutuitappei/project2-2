@@ -46,8 +46,27 @@ void Stage::Updata(void)
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			puyo->SetDirParmit(dirparmit);
-			puyo->Move(data.first);
+			/*if ()
+			{
+
+			}
+			else if ()
+			{
+
+			}
+			else if ()
+			{
+
+			}
+			else if ()
+			{
+
+			}
+			else
+			{*/
+				puyo->SetDirParmit(dirparmit);
+				puyo->Move(data.first);
+			//}
 		}
 	}
 	puyo->Updata();
