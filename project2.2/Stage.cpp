@@ -16,7 +16,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
-Stage::Stage():_screenID(0),_id(0),_color(0x000000)
+Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0)
 {
 
 }
@@ -41,34 +41,33 @@ void Stage::Updata(void)
 
 	Dirpermit dirparmit;
 	dirparmit.perBit = { 1,1,1,1 };
-	/*Puyo puyoVec[];
-	auto pos = puyoVec[0].GetGrid(_blocksize);*/
+
+	auto pos = puyo->GetGrid(_blocksize);
 
 	for (auto data : controller->GetCntData())
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			/*if (_data[pos.x][pos.y-1] != PuyoID::Non)
-			{
-				dirparmit.perBit.up = 0;
-			}
-			else if ()
-			{
-
-			}
-			else if ()
-			{
-
-			}
-			else if ()
-			{
-
-			}
-			else
-			{*/
-				puyo->SetDirParmit(dirparmit);
-				puyo->Move(data.first);
+			//if (_data[pos.x][pos.y-1] != PuyoID::Non)
+			//{
+			//	dirparmit.perBit.up = 0;
 			//}
+			// if (_data[pos.x][pos.y+1] != PuyoID::Non)
+			//{
+			//	dirparmit.perBit.down = 0;
+			//}
+			// if (_data[pos.x-1][pos.y] != PuyoID::Non)
+			//{
+			//	dirparmit.perBit.left = 0;
+			//}
+			// if (_data[pos.x+1][pos.y-1] != PuyoID::Non)
+			//{
+			//	dirparmit.perBit.right = 0;
+			//}
+
+			puyo->SetDirParmit(dirparmit);
+			puyo->Move(data.first);
+			
 		}
 		if ((data.first == InputID::Down)&& data.second[static_cast<int>(Trg::Now)])
 		{

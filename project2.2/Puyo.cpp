@@ -21,7 +21,7 @@ void Puyo::Move(InputID id)
 	switch (id)
 	{
     case InputID::Up:
-        _pos.y -= _size.y;
+        //_pos.y -= _size.y;
         break;
     case InputID::Down:
         break;
