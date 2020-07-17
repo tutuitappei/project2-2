@@ -1,5 +1,7 @@
 #include<DxLib.h>
 #include<mutex>
+#include<functional>
+#include<algorithm>
 #include "Stage.h"
 #include"input/Keyboard1.h"
 
@@ -12,11 +14,12 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_offset = std::move(offset);
 	_size = std::move(size);
 	_blocksize = 32;
+	count = 0;
 	init();
 	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
-Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0)
+Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0)
 {
 
 }
@@ -48,22 +51,22 @@ void Stage::Updata(void)
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			//if (_data[pos.x][pos.y-1] != PuyoID::Non)
-			//{
-			//	dirparmit.perBit.up = 0;
-			//}
-			// if (_data[pos.x][pos.y+1] != PuyoID::Non)
-			//{
-			//	dirparmit.perBit.down = 0;
-			//}
-			// if (_data[pos.x-1][pos.y] != PuyoID::Non)
-			//{
-			//	dirparmit.perBit.left = 0;
-			//}
-			// if (_data[pos.x+1][pos.y-1] != PuyoID::Non)
-			//{
-			//	dirparmit.perBit.right = 0;
-			//}
+			if (_data[pos.x][pos.y-1] != static_cast<int>(PuyoID::Non))
+			{
+				dirparmit.perBit.up = 0;
+			}
+			 if (_data[pos.x][pos.y+1] != static_cast<int>(PuyoID::Non))
+			{
+				dirparmit.perBit.down = 0;
+			}
+			 if (_data[pos.x-1][pos.y] != static_cast<int>(PuyoID::Non))
+			{
+				dirparmit.perBit.left = 0;
+			}
+			 if (_data[pos.x+1][pos.y-1] != static_cast<int>(PuyoID::Non))
+			{
+				dirparmit.perBit.right = 0;
+			}
 
 			puyo->SetDirParmit(dirparmit);
 			puyo->Move(data.first);
@@ -92,5 +95,30 @@ bool Stage::init(void)
 
 	controller = std::make_unique<Keyboard1>();
 	controller->Setup(_id);
+	return false;
+}
+
+bool Stage::EleseData(void)
+{
+	memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
+
+	std::function<void(PuyoID, Vector2)> chpuyo = [&](PuyoID id, Vector2 vec) {
+		if (_erasedataBaase[vec.x][vec.y] == static_cast<int>(PuyoID::Non))
+		{
+			if (_data[vec.x][vec.y])
+			{
+				count++;
+				_erasedataBaase[vec.x][vec.y] = _data[vec.x][vec.y];
+				chpuyo(id, { vec.x,vec.y - 1 });
+				chpuyo(id, { vec.x,vec.y + 1 });
+				chpuyo(id, { vec.x - 1,vec.y });
+				chpuyo(id, { vec.x + 1,vec.y });
+			}
+		}
+	};
+	if (count == 4)
+	{
+		memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
+	}
 	return false;
 }

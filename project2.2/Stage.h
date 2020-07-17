@@ -21,6 +21,7 @@ public:
 	void Updata(void);
 private:
 	bool init(void);
+	bool EleseData(void);
 
 	int _screenID;
 	Vector2 _offset;
@@ -30,9 +31,10 @@ private:
 
 	std::vector<int*> _data;
 	std::vector<int> _dataBaase;
+	std::vector<int*> _erasedataBaase;
 
 	int _blocksize;
-
+	int count;
 	
 
 	std::unique_ptr<Puyo> puyo;
