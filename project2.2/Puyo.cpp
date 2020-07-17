@@ -6,6 +6,10 @@ Puyo::Puyo(Vector2 vec, PuyoID id)
     _pos = vec;
     _size = { 32, 32};
     _id = id;
+
+    _dropcnt = 0;
+    _dropinter = 30;
+    _dropspeed = 8;
 }
 
 Puyo::~Puyo()
@@ -20,7 +24,6 @@ void Puyo::Move(InputID id)
         _pos.y -= _size.y;
         break;
     case InputID::Down:
-        _pos.y += _size.y;
         break;
     case InputID::Left:
         _pos.x -= _size.x;
@@ -37,14 +40,31 @@ void Puyo::Move(InputID id)
 	}
 }
 
-void Puyo::Updata(void)
+bool Puyo::Updata(void)
 {
-    Draw();
+    if (_dropcnt < _dropinter)
+    {
+        _dropcnt++;
+        return false;
+    }
+    else
+    {
+        _pos.y += _dropspeed;
+        _dropcnt = 0;
+        return true;
+    }
+    return false;
 }
 
 void Puyo::Draw(void)
 {
     DrawCircle(_pos.x, _pos.y, _size.x/2, 0xffffff, true);
+}
+
+bool Puyo::SoftDrop(void)
+{
+    _dropcnt += _dropinter;
+    return false;
 }
 
 bool Puyo::SetDirParmit(Dirpermit dirparmit)

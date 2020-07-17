@@ -41,14 +41,16 @@ void Stage::Updata(void)
 
 	Dirpermit dirparmit;
 	dirparmit.perBit = { 1,1,1,1 };
+	/*Puyo puyoVec[];
+	auto pos = puyoVec[0].GetGrid(_blocksize);*/
 
 	for (auto data : controller->GetCntData())
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			/*if ()
+			/*if (_data[pos.x][pos.y-1] != PuyoID::Non)
 			{
-
+				dirparmit.perBit.up = 0;
 			}
 			else if ()
 			{
@@ -68,8 +70,13 @@ void Stage::Updata(void)
 				puyo->Move(data.first);
 			//}
 		}
+		if ((data.first == InputID::Down)&& data.second[static_cast<int>(Trg::Now)])
+		{
+			puyo->SoftDrop();
+		}
 	}
 	puyo->Updata();
+	puyo->Draw();
 
 }
 
