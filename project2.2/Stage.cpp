@@ -19,7 +19,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
 }
 
-Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0)
+Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0),_stgmode(StgMode::DROP)
 {
 
 }
@@ -41,6 +41,9 @@ void Stage::Draw(void)
 void Stage::Updata(void)
 {
 	(*controller)();
+
+	bool nextFlag = false;
+	std::for_each(PuyoVec.rbegin(), PuyoVec.rend(), [&]() {nextFlag &= });
 
 	Dirpermit dirparmit;
 	dirparmit.perBit = { 1,1,1,1 };
@@ -121,4 +124,8 @@ bool Stage::EleseData(void)
 		memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
 	}
 	return false;
+}
+
+void Stage::Deletopuyo(void)
+{
 }

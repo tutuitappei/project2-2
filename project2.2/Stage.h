@@ -6,8 +6,15 @@
 
 //class Vector2
 
-#define STAGE_SIZE_X 6
-#define STAGE_SIZE_Y 12
+#define STAGE_SIZE_X 8
+#define STAGE_SIZE_Y 14
+
+enum class StgMode
+{
+	DROP,
+	RENSA,
+	MAX,
+};
 
 class Stage
 {
@@ -27,6 +34,8 @@ private:
 	Vector2 _offset;
 	Vector2 _size;
 
+	StgMode _stgmode;
+
 	std::unique_ptr<Controller> controller;
 
 	std::vector<int*> _data;
@@ -36,8 +45,11 @@ private:
 	int _blocksize;
 	int count;
 	
+	void Deletopuyo(void);
 
 	std::unique_ptr<Puyo> puyo;
+	std::vector<Puyo> PuyoVec;
+
 	static int _stagecount;
 	int _id;
 	int _color;
