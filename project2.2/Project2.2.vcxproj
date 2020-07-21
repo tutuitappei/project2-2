@@ -146,7 +146,6 @@
     <ClCompile Include="Puyo.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Stage.cpp" />
-    <ClCompile Include="System.cpp" />
     <ClCompile Include="_debug\_DebugConOut.cpp" />
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
@@ -160,7 +159,6 @@
     <ClInclude Include="Puyo.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Stage.h" />
-    <ClInclude Include="System.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />

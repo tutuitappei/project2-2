@@ -9,11 +9,6 @@ void SceneManager::Run(void)
 	//{
 	//}
 
-	DrawLine(screensize.x / 2, 0, screensize.x / 2, screensize.y, color);
-	DrawLine(20, 0, 20, screensize.y, color);
-	DrawLine(620, 0, 620, screensize.y, color);
-	DrawLine(0, 40, screensize.x, 40, color);
-	DrawLine(0, 460, screensize.x, 460, color);
 	DrawBox(60, 55, 240, 450, color, false);
 	DrawBox(245, 55, 285, 135, color, false);
 

@@ -43,7 +43,7 @@ void Stage::Updata(void)
 	(*controller)();
 
 	bool nextFlag = false;
-	std::for_each(PuyoVec.rbegin(), PuyoVec.rend(), [&]() {nextFlag &= });
+	//std::for_each(PuyoVec.rbegin(), PuyoVec.rend(), [](){});
 
 	Dirpermit dirparmit;
 	dirparmit.perBit = { 1,1,1,1 };
