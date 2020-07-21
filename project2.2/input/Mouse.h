@@ -1,5 +1,6 @@
 #pragma once
 #include<array>
+#include"../Vector2.h"
 #include "Controller.h"
 class Mouse :
 	public Controller
