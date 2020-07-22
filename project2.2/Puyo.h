@@ -41,6 +41,8 @@ public:
 
 	bool SetDirParmit(Dirpermit dirparmit);
 
+	PuyoID GetID(void);
+
 	//const Vector2& GetPos(void);
 
 	const Vector2 GetGrid(int size);

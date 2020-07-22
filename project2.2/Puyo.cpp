@@ -72,6 +72,11 @@ bool Puyo::SetDirParmit(Dirpermit dirparmit)
     return false;
 }
 
+PuyoID Puyo::GetID(void)
+{
+    return PuyoID();
+}
+
 const Vector2 Puyo::GetGrid(int size)
 {
     return Vector2(_pos.x - size/2, _pos.y - size/2);

@@ -43,12 +43,13 @@ void Stage::Updata(void)
 	(*controller)();
 
 	bool nextFlag = false;
-	//std::for_each(PuyoVec.rbegin(), PuyoVec.rend(), [](){});
+	//std::for_each(PuyoVec.rbegin(), PuyoVec.rend(), [&](){});
 
 	Dirpermit dirparmit;
 	dirparmit.perBit = { 1,1,1,1 };
 
 	auto pos = puyo->GetGrid(_blocksize);
+	int offset_y = ((pos.y % _blocksize) != 0);
 
 	for (auto data : controller->GetCntData())
 	{
@@ -62,11 +63,11 @@ void Stage::Updata(void)
 			{
 				dirparmit.perBit.down = 0;
 			}
-			 if (_data[pos.x-1][pos.y] != static_cast<int>(PuyoID::Non))
+			 if (_data[pos.x-1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.left = 0;
 			}
-			 if (_data[pos.x+1][pos.y-1] != static_cast<int>(PuyoID::Non))
+			 if (_data[pos.x+1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.right = 0;
 			}
@@ -101,12 +102,17 @@ bool Stage::init(void)
 	return false;
 }
 
+bool Stage::InstancePuyo(void)
+{
+	return false;
+}
+
 bool Stage::EleseData(void)
 {
 	memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
 
 	std::function<void(PuyoID, Vector2)> chpuyo = [&](PuyoID id, Vector2 vec) {
-		if (_erasedataBaase[vec.x][vec.y] == static_cast<int>(PuyoID::Non))
+		if (_erasedataBaase[vec.x][vec.y]/*->GetID()*/ == static_cast<int>(PuyoID::Non))
 		{
 			if (_data[vec.x][vec.y])
 			{
@@ -119,9 +125,13 @@ bool Stage::EleseData(void)
 			}
 		}
 	};
-	if (count == 4)
+	if (count < 4)
 	{
 		memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
+	}
+	else
+	{
+
 	}
 	return false;
 }
