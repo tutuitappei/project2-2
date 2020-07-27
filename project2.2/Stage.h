@@ -4,6 +4,12 @@
 #include"Vector2.h"
 #include"input/Controller.h"
 #include"Puyo.h"
+#include"PlayUnit.h"
+#include"puyomode/Dorop.h"
+#include"puyomode/Elase.h"
+#include"puyomode/Puyon.h"
+#include"puyomode/Munyon.h"
+#include"puyomode/Move.h"
 
 //class Vector2
 
@@ -13,8 +19,11 @@
 enum class StgMode
 {
 	DROP,
-	RENSA,
-	MAX,
+	PUYON,
+	ELASE,
+	MOVE,
+	MUNYON,
+	MAX
 };
 
 class Stage
@@ -61,5 +70,12 @@ private:
 	static int _stagecount;
 	int _id;
 	int _color;
+
+	friend PlayUnit;
+	friend Dorop;
+	friend Elase;
+	friend Munyon;
+	friend Puyon;
+	friend Move;
 };
 
