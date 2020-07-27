@@ -69,12 +69,13 @@ bool Puyo::SoftDrop(void)
 
 bool Puyo::SetDirParmit(Dirpermit dirparmit)
 {
+
     return false;
 }
 
 PuyoID Puyo::GetID(void)
 {
-    return PuyoID();
+    return PuyoID((rand() % (static_cast<int>(PuyoID::MAX) - 2)) + 1);
 }
 
 const Vector2 Puyo::GetGrid(int size)
