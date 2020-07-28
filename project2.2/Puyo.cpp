@@ -58,7 +58,7 @@ bool Puyo::Updata(void)
 
 void Puyo::Draw(void)
 {
-    DrawCircle(_pos.x, _pos.y, _size.x/2, 0xffffff, true);
+    //DrawCircle(_pos.x, _pos.y, _size.x/2, 0xffffff, true);
 }
 
 bool Puyo::SoftDrop(void)

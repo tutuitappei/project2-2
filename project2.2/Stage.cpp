@@ -104,7 +104,11 @@ bool Stage::init(void)
 
 bool Stage::InstancePuyo(void)
 {
-	return false;
+	auto id = puyo->GetID();
+
+	id = puyo->GetID();
+
+	return true;
 }
 
 bool Stage::EleseData(void)

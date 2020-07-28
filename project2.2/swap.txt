@@ -1,0 +1,4 @@
+std::swap … 指定した二つの要素を入れ替える
+
+std::swap(要素１,要素２);
+targetID ^= 1;
