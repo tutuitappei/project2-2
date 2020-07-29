@@ -17,11 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			return false;
 		}
-
-		SetDrawScreen(DX_SCREEN_BACK);							// •`‰ææ‚ğÊŞ¯¸ÊŞ¯Ì§‚Éİ’è
-		ClsDrawScreen();										// ‰æ–Ê‚ÌÁ‹
 		lpScene.GetInstance().Run();
-		ScreenFlip();
 	}
 
 	DxLib_End();

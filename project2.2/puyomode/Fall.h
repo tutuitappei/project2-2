@@ -2,7 +2,7 @@
 #include"../Stage.h"
 
 
-struct Move
+struct Fall
 {
 
 };

@@ -161,7 +161,7 @@
     <ClInclude Include="Puyo.h" />
     <ClInclude Include="puyomode\Dorop.h" />
     <ClInclude Include="puyomode\Elase.h" />
-    <ClInclude Include="puyomode\Move.h" />
+    <ClInclude Include="puyomode\Fall.h" />
     <ClInclude Include="puyomode\Munyon.h" />
     <ClInclude Include="puyomode\Puyon.h" />
     <ClInclude Include="SceneManager.h" />

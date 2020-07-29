@@ -9,6 +9,7 @@ int Stage::_stagecount = 0;
 
 Stage::Stage(Vector2&& offset, Vector2&& size)
 {
+	_screenID = 0;
 	_id = _stagecount;
 	_stagecount++;
 	_offset = std::move(offset);
@@ -17,6 +18,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	count = 0;
 	init();
 	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
+	_stgmode = StgMode::DROP;
 }
 
 Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0),_stgmode(StgMode::DROP)
@@ -31,6 +33,7 @@ Stage::~Stage()
 
 int Stage::GetStageDraw(void)
 {
+	DrawGraph(_offset.x,_offset.y,_screenID,true);
 	return _screenID;
 }
 
@@ -99,6 +102,7 @@ bool Stage::init(void)
 
 	controller = std::make_unique<Keyboard1>();
 	controller->Setup(_id);
+	GetStageDraw();
 	return false;
 }
 

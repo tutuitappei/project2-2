@@ -9,7 +9,7 @@
 #include"puyomode/Elase.h"
 #include"puyomode/Puyon.h"
 #include"puyomode/Munyon.h"
-#include"puyomode/Move.h"
+#include"puyomode/Fall.h"
 
 //class Vector2
 
@@ -76,6 +76,6 @@ private:
 	friend Elase;
 	friend Munyon;
 	friend Puyon;
-	friend Move;
+	friend Fall;
 };
 
