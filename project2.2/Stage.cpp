@@ -17,7 +17,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_blocksize = 32;
 	count = 0;
 	init();
-	puyo = std::make_unique<Puyo>(Vector2{ 100,100 }, PuyoID::Red);
+	puyo = std::make_unique<Puyo>(Vector2{ 64,32 }, PuyoID::Red);
 	_stgmode = StgMode::DROP;
 }
 
@@ -34,6 +34,10 @@ Stage::~Stage()
 int Stage::GetStageDraw(void)
 {
 	DrawGraph(_offset.x,_offset.y,_screenID,true);
+	for (int no = 0; no < 2; no++)
+	{
+		DrawBox(_offset.x + (_size.x*8)*no , _offset.y, _offset.x + _size.x * 8 + (_size.x * 8) * no, _size.y * 14, 0xffffff, false);
+	}
 	return _screenID;
 }
 
@@ -53,12 +57,11 @@ void Stage::Updata(void)
 
 	auto pos = puyo->GetGrid(_blocksize);
 	int offset_y = ((pos.y % _blocksize) != 0);
-
 	for (auto data : controller->GetCntData())
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			if (_data[pos.x][pos.y-1] != static_cast<int>(PuyoID::Non))
+			/*if (_data[pos.x][pos.y-1] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.up = 0;
 			}
@@ -73,7 +76,7 @@ void Stage::Updata(void)
 			 if (_data[pos.x+1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.right = 0;
-			}
+			}*/
 
 			puyo->SetDirParmit(dirparmit);
 			puyo->Move(data.first);
@@ -102,7 +105,6 @@ bool Stage::init(void)
 
 	controller = std::make_unique<Keyboard1>();
 	controller->Setup(_id);
-	GetStageDraw();
 	return false;
 }
 
