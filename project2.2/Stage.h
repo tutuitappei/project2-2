@@ -26,6 +26,8 @@ enum class StgMode
 	MAX
 };
 
+using Sharepuyo = std::shared_ptr<Puyo>;
+
 class Stage
 {
 public:
@@ -47,20 +49,19 @@ private:
 
 	StgMode _stgmode;
 
-
 	std::unique_ptr<Puyo> puyo;
-	std::vector<Puyo> PuyoVec;
-	std::shared_ptr<Puyo> Sharepuyo;
+	std::vector<Sharepuyo> PuyoVec;
 
 	std::unique_ptr<Controller> controller;
 
-	//std::vector<std::shared_ptr<Puyo>*> _data;
-	//std::vector<std::shared_ptr<Puyo>> _dataBaase;
-	//std::vector<std::shared_ptr<Puyo>*> _erasedataBaase;
+	std::vector<Sharepuyo*> _data;
+	std::vector<Sharepuyo> _dataBase;
+	std::vector<Sharepuyo*> _erasedata;
+	std::vector<Sharepuyo> _erasedataBase;
 
-	std::vector<int*> _data;
-	std::vector<int> _dataBase;
-	std::vector<int*> _erasedataBase;
+	//std::vector<int*> _data;
+	//std::vector<int> _dataBase;
+	//std::vector<int*> _erasedataBase;
 
 	int _blocksize;
 	int count;

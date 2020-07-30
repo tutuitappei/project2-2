@@ -1,6 +1,7 @@
 #include<DxLib.h>
 #include"Vector2.h"
 #include"_debug/_DebugConOut.h"
+#include"_debug/_DebugDispOut.h"
 #include "main.h"
 #include"SceneManager.h"
 
@@ -18,7 +19,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			return false;
 		}
 		lpScene.GetInstance().Run();
-
 		ScreenFlip();
 	}
 

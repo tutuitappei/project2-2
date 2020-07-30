@@ -21,14 +21,7 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_stgmode = StgMode::DROP;
 
 	auto blockpos = _size / _blocksize;
-	for (int data = 0; data < blockpos.x; data++)
-	{
-		_data[data][0] = static_cast<int>(PuyoID::Wall);
-	}
-	for (int data = 0; data < blockpos.y; data++)
-	{
-		_data[0][data] = static_cast<int>(PuyoID::Wall);
-	}
+
 }
 
 Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0),_stgmode(StgMode::DROP)
@@ -71,19 +64,19 @@ void Stage::Updata(void)
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			if (_data[pos.x][pos.y] != static_cast<int>(PuyoID::Non))
+			if (_data[pos.x][pos.y-1]->GetID() != PuyoID::Non)
 			{
 				dirparmit.perBit.up = 0;
 			}
-			 if (_data[pos.x][pos.y+1] != static_cast<int>(PuyoID::Non))
+			 if (_data[pos.x][pos.y+1]->GetID() != PuyoID::Non)
 			{
 				dirparmit.perBit.down = 0;
 			}
-			 if (_data[pos.x-1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
+			 if (_data[pos.x-1][pos.y + offset_y]->GetID() != PuyoID::Non)
 			{
 				dirparmit.perBit.left = 0;
 			}
-			 if (_data[pos.x+1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
+			 if (_data[pos.x+1][pos.y + offset_y]->GetID() != PuyoID::Non)
 			{
 				dirparmit.perBit.right = 0;
 			}
@@ -132,12 +125,12 @@ bool Stage::EleseData(void)
 	memset(_erasedataBase.data(), 0, _erasedataBase.size() * sizeof(PuyoID));
 
 	std::function<void(PuyoID, Vector2)> chpuyo = [&](PuyoID id, Vector2 vec) {
-		if (_erasedataBase[vec.x][vec.y]/*->GetID()*/ == static_cast<int>(PuyoID::Non))
+		if (_erasedata[vec.x][vec.y]->GetID() == PuyoID::Non)
 		{
 			if (_data[vec.x][vec.y])
 			{
 				count++;
-				_erasedataBase[vec.x][vec.y] = _data[vec.x][vec.y];
+				_erasedata[vec.x][vec.y] = _data[vec.x][vec.y];
 				chpuyo(id, { vec.x,vec.y - 1 });
 				chpuyo(id, { vec.x,vec.y + 1 });
 				chpuyo(id, { vec.x - 1,vec.y });
@@ -151,7 +144,11 @@ bool Stage::EleseData(void)
 	}
 	else
 	{
+		//for (auto&& puyoo : PuyoVec )
+		//{
 
+		//}
+		return true;
 	}
 	return false;
 }
