@@ -27,6 +27,7 @@ enum class StgMode
 };
 
 using Sharepuyo = std::shared_ptr<Puyo>;
+using Unipuyo = std::unique_ptr<Puyo>;
 
 class Stage
 {
@@ -49,7 +50,7 @@ private:
 
 	StgMode _stgmode;
 
-	std::unique_ptr<Puyo> puyo;
+	Unipuyo puyo;
 	std::vector<Sharepuyo> PuyoVec;
 
 	std::unique_ptr<Controller> controller;
@@ -67,6 +68,7 @@ private:
 	int count;
 	
 	void Deletopuyo(void);
+	bool SetWall(void);
 
 	static int _stagecount;
 	int _id;

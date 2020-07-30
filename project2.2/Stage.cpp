@@ -17,10 +17,10 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_blocksize = 32;
 	count = 0;
 	init();
+	SetWall();
 	puyo = std::make_unique<Puyo>(Vector2{ 64,32 }, PuyoID::Red);
 	_stgmode = StgMode::DROP;
 
-	auto blockpos = _size / _blocksize;
 
 }
 
@@ -60,23 +60,24 @@ void Stage::Updata(void)
 
 	auto pos = puyo->GetGrid(_blocksize);
 	int offset_y = ((pos.y % _blocksize) != 0);
+
 	for (auto data : controller->GetCntData())
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			if (_data[pos.x][pos.y-1]->GetID() != PuyoID::Non)
+			if (_data[pos.x][pos.y-1])
 			{
 				dirparmit.perBit.up = 0;
 			}
-			 if (_data[pos.x][pos.y+1]->GetID() != PuyoID::Non)
+			 if (_data[pos.x][pos.y+1])
 			{
 				dirparmit.perBit.down = 0;
 			}
-			 if (_data[pos.x-1][pos.y + offset_y]->GetID() != PuyoID::Non)
+			 if (_data[pos.x-1][pos.y + offset_y])
 			{
 				dirparmit.perBit.left = 0;
 			}
-			 if (_data[pos.x+1][pos.y + offset_y]->GetID() != PuyoID::Non)
+			 if (_data[pos.x+1][pos.y + offset_y])
 			{
 				dirparmit.perBit.right = 0;
 			}
@@ -113,6 +114,7 @@ bool Stage::init(void)
 
 bool Stage::InstancePuyo(void)
 {
+
 	auto id = puyo->GetID();
 
 	id = puyo->GetID();
@@ -155,4 +157,15 @@ bool Stage::EleseData(void)
 
 void Stage::Deletopuyo(void)
 {
+}
+
+bool Stage::SetWall(void)
+{
+	for (auto i = 0; i < STAGE_SIZE_X; i++)
+	{
+	}
+	for (auto i = 0; i < STAGE_SIZE_Y; i++)
+	{
+	}
+	return false;
 }
