@@ -18,6 +18,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			return false;
 		}
 		lpScene.GetInstance().Run();
+
+		ScreenFlip();
 	}
 
 	DxLib_End();

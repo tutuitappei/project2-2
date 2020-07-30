@@ -14,8 +14,6 @@ void SceneManager::Run(void)
 
 	stage->GetStageDraw();
 	stage->Updata();
-
-	ScreenFlip();
 }
 
 SceneManager::SceneManager(): pos(75, 70), screensize(640, 480), time(0), color(0xffffff), speed(0)

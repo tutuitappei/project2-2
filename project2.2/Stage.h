@@ -59,8 +59,8 @@ private:
 	//std::vector<std::shared_ptr<Puyo>*> _erasedataBaase;
 
 	std::vector<int*> _data;
-	std::vector<int> _dataBaase;
-	std::vector<int*> _erasedataBaase;
+	std::vector<int> _dataBase;
+	std::vector<int*> _erasedataBase;
 
 	int _blocksize;
 	int count;

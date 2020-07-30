@@ -19,6 +19,16 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	init();
 	puyo = std::make_unique<Puyo>(Vector2{ 64,32 }, PuyoID::Red);
 	_stgmode = StgMode::DROP;
+
+	auto blockpos = _size / _blocksize;
+	for (int data = 0; data < blockpos.x; data++)
+	{
+		_data[data][0] = static_cast<int>(PuyoID::Wall);
+	}
+	for (int data = 0; data < blockpos.y; data++)
+	{
+		_data[0][data] = static_cast<int>(PuyoID::Wall);
+	}
 }
 
 Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0),_stgmode(StgMode::DROP)
@@ -33,7 +43,7 @@ Stage::~Stage()
 
 int Stage::GetStageDraw(void)
 {
-	DrawGraph(_offset.x,_offset.y,_screenID,true);
+	//DrawGraph(_offset.x,_offset.y,_screenID,true);
 	for (int no = 0; no < 2; no++)
 	{
 		DrawBox(_offset.x + (_size.x*8)*no , _offset.y, _offset.x + _size.x * 8 + (_size.x * 8) * no, _size.y * 14, 0xffffff, false);
@@ -61,7 +71,7 @@ void Stage::Updata(void)
 	{
 		if (data.second[static_cast<int>(Trg::Now)] && !data.second[static_cast<int>(Trg::Old)])
 		{
-			/*if (_data[pos.x][pos.y-1] != static_cast<int>(PuyoID::Non))
+			if (_data[pos.x][pos.y] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.up = 0;
 			}
@@ -76,7 +86,7 @@ void Stage::Updata(void)
 			 if (_data[pos.x+1][pos.y + offset_y] != static_cast<int>(PuyoID::Non))
 			{
 				dirparmit.perBit.right = 0;
-			}*/
+			}
 
 			puyo->SetDirParmit(dirparmit);
 			puyo->Move(data.first);
@@ -97,10 +107,10 @@ bool Stage::init(void)
 	_screenID = MakeScreen(_size.x,_size.y,true );
 	_color = 0x000033 << (16 * _id);
 
-	_dataBaase.resize(STAGE_SIZE_X * STAGE_SIZE_Y);
+	_dataBase.resize(STAGE_SIZE_X * STAGE_SIZE_Y);
 	for (size_t no = 0; no < STAGE_SIZE_Y; no++)
 	{
-		_data.emplace_back(&_dataBaase[no * static_cast<size_t>(STAGE_SIZE_X)]);
+		_data.emplace_back(&_dataBase[no * static_cast<size_t>(STAGE_SIZE_X)]);
 	}
 
 	controller = std::make_unique<Keyboard1>();
@@ -119,15 +129,15 @@ bool Stage::InstancePuyo(void)
 
 bool Stage::EleseData(void)
 {
-	memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
+	memset(_erasedataBase.data(), 0, _erasedataBase.size() * sizeof(PuyoID));
 
 	std::function<void(PuyoID, Vector2)> chpuyo = [&](PuyoID id, Vector2 vec) {
-		if (_erasedataBaase[vec.x][vec.y]/*->GetID()*/ == static_cast<int>(PuyoID::Non))
+		if (_erasedataBase[vec.x][vec.y]/*->GetID()*/ == static_cast<int>(PuyoID::Non))
 		{
 			if (_data[vec.x][vec.y])
 			{
 				count++;
-				_erasedataBaase[vec.x][vec.y] = _data[vec.x][vec.y];
+				_erasedataBase[vec.x][vec.y] = _data[vec.x][vec.y];
 				chpuyo(id, { vec.x,vec.y - 1 });
 				chpuyo(id, { vec.x,vec.y + 1 });
 				chpuyo(id, { vec.x - 1,vec.y });
@@ -137,7 +147,7 @@ bool Stage::EleseData(void)
 	};
 	if (count < 4)
 	{
-		memset(_erasedataBaase.data(), 0, _erasedataBaase.size() * sizeof(PuyoID));
+		memset(_erasedataBase.data(), 0, _erasedataBase.size() * sizeof(PuyoID));
 	}
 	else
 	{
