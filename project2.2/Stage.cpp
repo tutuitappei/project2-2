@@ -163,6 +163,8 @@ bool Stage::SetWall(void)
 {
 	for (auto i = 0; i < STAGE_SIZE_X; i++)
 	{
+		_data[i][0].reset->GetID() = PuyoID::Non;
+		_data[i][STAGE_SIZE_Y - 1].reset->GetID() = PuyoID::Non;
 	}
 	for (auto i = 0; i < STAGE_SIZE_Y; i++)
 	{
