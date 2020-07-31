@@ -4,5 +4,6 @@
 
 struct Puyon
 {
+	int puyoCnt;
 
 };

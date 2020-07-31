@@ -17,7 +17,6 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	_blocksize = 32;
 	count = 0;
 	init();
-	SetWall();
 	puyo = std::make_unique<Puyo>(Vector2{ 64,32 }, PuyoID::Red);
 	_stgmode = StgMode::DROP;
 
@@ -107,6 +106,8 @@ bool Stage::init(void)
 		_data.emplace_back(&_dataBase[no * static_cast<size_t>(STAGE_SIZE_X)]);
 	}
 
+	SetWall();
+
 	controller = std::make_unique<Keyboard1>();
 	controller->Setup(_id);
 	return false;
@@ -116,7 +117,7 @@ bool Stage::InstancePuyo(void)
 {
 
 	auto id = puyo->GetID();
-
+	_data.emplace
 	id = puyo->GetID();
 
 	return true;
@@ -161,12 +162,11 @@ void Stage::Deletopuyo(void)
 
 bool Stage::SetWall(void)
 {
+
 	for (auto i = 0; i < STAGE_SIZE_X; i++)
 	{
-		_data[i][0].reset->GetID() = PuyoID::Non;
-		_data[i][STAGE_SIZE_Y - 1].reset->GetID() = PuyoID::Non;
 	}
-	for (auto i = 0; i < STAGE_SIZE_Y; i++)
+	for (auto j = 0; j < STAGE_SIZE_Y; j++)
 	{
 	}
 	return false;

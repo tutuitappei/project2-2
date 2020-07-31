@@ -4,7 +4,7 @@
 #include"Vector2.h"
 #include"input/Controller.h"
 #include"Puyo.h"
-#include"PlayUnit.h"
+//#include"PlayUnit.h"
 #include"puyomode/Dorop.h"
 #include"puyomode/Elase.h"
 #include"puyomode/Puyon.h"
@@ -15,6 +15,13 @@
 
 #define STAGE_SIZE_X 8
 #define STAGE_SIZE_Y 14
+
+class PlayUnit;
+struct Dorop;
+struct Elase;
+struct Puyon;
+struct Munyon;
+struct Fall;
 
 enum class StgMode
 {
