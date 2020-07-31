@@ -168,7 +168,7 @@ bool Stage::SetWall(void)
 	{
 		for (auto i = 0; i < STAGE_SIZE_X; i++)
 		{
-			if ((i == 0 || i == STAGE_SIZE_X) || (j == 0 || j == STAGE_SIZE_Y))
+			if (i == 0 || i == STAGE_SIZE_X || j == STAGE_SIZE_Y)
 			{
 				//_data[i][j]->GetID() = PuyoID::Wall;
 			}
