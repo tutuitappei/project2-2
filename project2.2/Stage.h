@@ -5,11 +5,11 @@
 #include"input/Controller.h"
 #include"Puyo.h"
 //#include"PlayUnit.h"
-#include"puyomode/Dorop.h"
-#include"puyomode/Elase.h"
-#include"puyomode/Puyon.h"
-#include"puyomode/Munyon.h"
-#include"puyomode/Fall.h"
+//#include"puyomode/Dorop.h"
+//#include"puyomode/Elase.h"
+//#include"puyomode/Puyon.h"
+//#include"puyomode/Munyon.h"
+//#include"puyomode/Fall.h"
 
 //class Vector2
 

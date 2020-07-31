@@ -70,8 +70,12 @@ bool Puyo::SoftDrop(void)
 
 bool Puyo::SetDirParmit(Dirpermit dirparmit)
 {
+    //if ()
+    //{
 
-    return false;
+    //}
+
+    return true;
 }
 
 PuyoID Puyo::GetID(void)

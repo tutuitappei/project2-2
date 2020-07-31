@@ -3,6 +3,7 @@
 #include<functional>
 #include<algorithm>
 #include "Stage.h"
+#include"PlayUnit.h"
 #include"input/Keyboard1.h"
 
 int Stage::_stagecount = 0;
@@ -90,6 +91,7 @@ void Stage::Updata(void)
 			puyo->SoftDrop();
 		}
 	}
+	/*PlayUnit().Updata(,,);*/
 	puyo->Updata();
 	puyo->Draw();
 
@@ -117,7 +119,7 @@ bool Stage::InstancePuyo(void)
 {
 
 	auto id = puyo->GetID();
-	_data.emplace
+	//PuyoVec.emplace(PuyoVec.begin());
 	id = puyo->GetID();
 
 	return true;
@@ -162,12 +164,15 @@ void Stage::Deletopuyo(void)
 
 bool Stage::SetWall(void)
 {
-
-	for (auto i = 0; i < STAGE_SIZE_X; i++)
-	{
-	}
 	for (auto j = 0; j < STAGE_SIZE_Y; j++)
 	{
+		for (auto i = 0; i < STAGE_SIZE_X; i++)
+		{
+			if ((i == 0 || i == STAGE_SIZE_X) || (j == 0 || j == STAGE_SIZE_Y))
+			{
+				//_data[i][j]->GetID() = PuyoID::Wall;
+			}
+		}
 	}
-	return false;
+	return true;
 }
