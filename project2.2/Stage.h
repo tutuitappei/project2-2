@@ -51,7 +51,9 @@ private:
 	bool init(void);
 	bool InstancePuyo(void);
 	bool OjamaInstance(void);
+	bool SetWall(void);
 	bool EleseData(void);
+	void Deletopuyo(void);
 
 	int _screenID;
 	Vector2 _offset;
@@ -77,17 +79,17 @@ private:
 
 	int _blocksize;
 	int count;
-	
-	void Deletopuyo(void);
-	bool SetWall(void);
 
 	static int _stagecount;
 	int _id;
 	int _color;
 
-	int Maxrensa;
-	int rensa;
-	int erasenum;
+	int _maxrensa;
+	int _rensa;
+	int _erasenum;
+	int _ojamanum;
+
+	bool _ojamaFlag;
 
 	friend PlayUnit;
 	friend Dorop;

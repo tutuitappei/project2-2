@@ -13,6 +13,9 @@ class OjamaPuyo :
 public:
 	OjamaPuyo(Vector2 vec, PuyoID id);
 	~OjamaPuyo();
+	
+	bool Updata(void);
+
 private:
 	PuyoID _id;
 	Vector2 _pos;
