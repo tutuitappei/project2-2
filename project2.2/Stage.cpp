@@ -125,6 +125,11 @@ bool Stage::InstancePuyo(void)
 	return true;
 }
 
+bool Stage::OjamaInstance(void)
+{
+	return false;
+}
+
 bool Stage::EleseData(void)
 {
 	memset(_erasedataBase.data(), 0, _erasedataBase.size() * sizeof(PuyoID));

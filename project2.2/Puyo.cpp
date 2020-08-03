@@ -80,7 +80,7 @@ bool Puyo::SetDirParmit(Dirpermit dirparmit)
 
 PuyoID Puyo::GetID(void)
 {
-    return PuyoID((rand() % (static_cast<int>(PuyoID::MAX) - 2)) + 1);
+    return PuyoID((rand() % (static_cast<int>(PuyoID::MAX) - 3)) + 1);
 }
 
 const Vector2 Puyo::GetGrid(int size)

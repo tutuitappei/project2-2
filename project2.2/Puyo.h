@@ -10,6 +10,7 @@ enum class PuyoID
 	Green,
 	Yellow,
 	Purpule,
+	Ojama,
 	Wall,
 	MAX
 };
