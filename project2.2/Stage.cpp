@@ -21,10 +21,9 @@ Stage::Stage(Vector2&& offset, Vector2&& size)
 	puyo = std::make_unique<Puyo>(Vector2{ 64,32 }, PuyoID::Red);
 	_stgmode = StgMode::DROP;
 
-
 }
 
-Stage::Stage():_screenID(0),_id(0),_color(0x000000),_blocksize(0),count(0),_stgmode(StgMode::DROP)
+Stage::Stage() :_screenID(0), _id(0), _color(0x000000), _blocksize(0), count(0), _stgmode(StgMode::DROP), _maxrensa(0), _rensa(0), _erasenum(0),_ojamanum(0), _ojamaFlag(false)
 {
 
 }
@@ -125,6 +124,11 @@ bool Stage::InstancePuyo(void)
 	return true;
 }
 
+bool Stage::OjamaInstance(void)
+{
+	return false;
+}
+
 bool Stage::EleseData(void)
 {
 	memset(_erasedataBase.data(), 0, _erasedataBase.size() * sizeof(PuyoID));
@@ -135,6 +139,7 @@ bool Stage::EleseData(void)
 			if (_data[vec.x][vec.y])
 			{
 				count++;
+				_erasenum++;
 				_erasedata[vec.x][vec.y] = _data[vec.x][vec.y];
 				chpuyo(id, { vec.x,vec.y - 1 });
 				chpuyo(id, { vec.x,vec.y + 1 });
@@ -155,6 +160,21 @@ bool Stage::EleseData(void)
 		//}
 		return true;
 	}
+
+	//むにょんで行う処理
+	//連鎖数の加算
+	_rensa++;
+	//おじゃまぷよの数 = (過去の最大連鎖数 / 2)＊(今回の連鎖数 - 1) * 消した個数 / 8
+	_ojamanum = (_maxrensa / 2) * (_rensa - 1) * _erasenum / 8;
+
+	//ドロップで行う処理
+	//過去の最大連鎖数の更新
+	_maxrensa = _rensa > _maxrensa ? _rensa : _maxrensa;
+	//消した個数の初期化
+	_erasenum = 0;
+	//連鎖数の初期化
+	_rensa = 0;
+
 	return false;
 }
 

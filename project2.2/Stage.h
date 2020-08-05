@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include<memory>
+#include<list>
 #include"Vector2.h"
 #include"input/Controller.h"
 #include"Puyo.h"
@@ -49,7 +50,10 @@ public:
 private:
 	bool init(void);
 	bool InstancePuyo(void);
+	bool OjamaInstance(void);
+	bool SetWall(void);
 	bool EleseData(void);
+	void Deletopuyo(void);
 
 	int _screenID;
 	Vector2 _offset;
@@ -67,19 +71,25 @@ private:
 	std::vector<Sharepuyo*> _erasedata;
 	std::vector<Sharepuyo> _erasedataBase;
 
+	std::list<Sharepuyo> OjamaList;
+
 	//std::vector<int*> _data;
 	//std::vector<int> _dataBase;
 	//std::vector<int*> _erasedataBase;
 
 	int _blocksize;
 	int count;
-	
-	void Deletopuyo(void);
-	bool SetWall(void);
 
 	static int _stagecount;
 	int _id;
 	int _color;
+
+	int _maxrensa;
+	int _rensa;
+	int _erasenum;
+	int _ojamanum;
+
+	bool _ojamaFlag;
 
 	friend PlayUnit;
 	friend Dorop;
