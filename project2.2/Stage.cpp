@@ -119,7 +119,7 @@ bool Stage::InstancePuyo(void)
 {
 
 	auto id = puyo->GetID();
-	//PuyoVec.emplace(PuyoVec.begin());
+	//PuyoVec.emplace(PuyoVec.begin(), std::make_unique<Puyo>(Vector2{(STAGE_SIZE_X/2) * _blocksize,_blocksize }));
 	id = puyo->GetID();
 
 	return true;
