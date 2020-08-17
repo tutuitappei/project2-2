@@ -11,7 +11,7 @@ public:
 
 	void Update(void) override;
 private:
-	std::array<char, 256>_KeyData;
-	std::map<InputID, int>_inputTbl;
+	std::array<char, 256>_KeyData;		//キーのデータ
+	std::map<InputID, int>_inputTbl;	//インプット用テーブル
 };
 
