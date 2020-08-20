@@ -32,8 +32,8 @@ bool NextPuyo::Add(int no)
 	{
 		_nextPuyoList.emplace_back(
 			nextPair{
-				std::make_shared<Puyo>(Vector2{ 0,0 }, static_cast<PuyoID>((rand() % 5) + 1)),
-				std::make_shared<Puyo>(Vector2{ 0,0 }, static_cast<PuyoID>((rand() % 5) + 1))
+				std::make_shared<Puyo>(Vector2{ 0,0 }, static_cast<PuyoID>((rand() % (static_cast<int>(PuyoID::MAX) - 4)) + 1)),
+				std::make_shared<Puyo>(Vector2{ 0,0 }, static_cast<PuyoID>((rand() % (static_cast<int>(PuyoID::MAX) - 4)) + 1))
 			}
 		);
 		no--;
@@ -41,10 +41,10 @@ bool NextPuyo::Add(int no)
 	Vector2 offSet = { 0,0 };
 	Vector2 pos1 = { 0,16 };
 	Vector2 pos2 = { 0,16 };
-	for (auto pair : _nextPuyoList)
+	for (auto data : _nextPuyoList)
 	{
-		pair.first->pos(std::move(pos1));
-		pair.second->pos(std::move(pos2));
+		data.first->pos(std::move(pos1));
+		data.second->pos(std::move(pos2));
 		pos1 += offSet;
 		pos2 += offSet;
 	}

@@ -38,4 +38,9 @@ bool Mouse::Setup(int no)
 
 void Mouse::Update(void)
 {
+	for (auto id : InputID())
+	{
+		/*_data[id][static_cast<int>(Trg::Old)] = _data[id][static_cast<int>(Trg::Now)];*/
+		/*_data[id][static_cast<int>(Trg::Now)] = [_inputTbl[id]];*/
+	}
 }

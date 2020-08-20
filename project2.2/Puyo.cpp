@@ -13,14 +13,15 @@ Puyocolor Puyo::_puyocolor = {
 Puyo::Puyo(Vector2 vec, PuyoID id)
 {
     _pos = vec;
-    _pos1 = _pos;
-    _pos2 = _pos;
     _size = { 32, 32};
     _id = id;
 
     _dropcnt = 0;
     _dropinter = 30;
     _dropspeed = 8;
+
+    _pos1 = Vector2{ (_pos.x + _size.x) + _size.x / 2, (_pos.y + _size.y) + _size.y / 2 };
+    _pos2 = Vector2{ (_pos.x + _size.x) + _size.x / 2, (_pos.y + _size.y) + _size.y + _size.y / 2 };
 }
 
 Puyo::~Puyo()
@@ -29,7 +30,7 @@ Puyo::~Puyo()
 
 void Puyo::Move(InputID id)
 {
-    if (_pos1.y + _size.y / 2 < ((_size.y) + _size.y * 12) || (_pos2.y + _size.y / 2 < (_size.y) + _size.y * 12))
+    if (_pos1.y + _size.y / 2 < ((_size.y) + _size.y * 12) || (_pos2.y + _size.y / 2 < (_size.y) + _size.y * 11))
     {
         switch (id)
         {
@@ -45,10 +46,10 @@ void Puyo::Move(InputID id)
             _pos.x += _size.x;
             break;
         case InputID::Btn1:
-
+            RotateMove(InputID::Btn1,_pos2);
             break;
         case InputID::Btn2:
-
+            RotateMove(InputID::Btn2,_pos2);
             break;
         default:
             break;
@@ -58,7 +59,7 @@ void Puyo::Move(InputID id)
 
 bool Puyo::Updata(void)
 {
-    if (_pos1.y + _size.y/2 < ((_size.y) + _size.y * 12) || (_pos2.y + _size.y/2 < (_size.y) + _size.y * 12))
+    if (_pos1.y + _size.y/2 < ((_size.y) + _size.y * 12) || (_pos2.y + _size.y/2 < (_size.y) + _size.y * 11))
     {
         if (_dropcnt < _dropinter)
         {
@@ -67,7 +68,8 @@ bool Puyo::Updata(void)
         }
         else
         {
-            _pos.y += _dropspeed;
+            _pos1.y += _dropspeed;
+            _pos2.y += _dropspeed;
             _dropcnt = 0;
             return true;
         }
@@ -77,8 +79,6 @@ bool Puyo::Updata(void)
 
 void Puyo::Draw(void)
 {
-    _pos1 = Vector2{ (_pos.x + _size.x) + _size.x / 2, (_pos.y + _size.y) + _size.y / 2 };
-    _pos2 = Vector2{ (_pos.x + _size.x) + _size.x / 2, (_pos.y + _size.y) + _size.y + _size.y / 2 };
     DrawCircle(_pos1.x, _pos1.y, _size.x/2, 0xff000, true);
     DrawCircle(_pos2.x, _pos2.y, _size.x / 2, 0xff00ff, true);
 }
@@ -98,7 +98,7 @@ bool Puyo::SetDirParmit(Dirpermit dirparmit)
 
 PuyoID Puyo::GetID(void)
 {
-    return PuyoID((rand() % (static_cast<int>(PuyoID::MAX) - 3)) + 1);
+    return PuyoID((rand() % (static_cast<int>(PuyoID::MAX) - 4)) + 1);
 }
 
 const Vector2 Puyo::GetGrid(int size)
@@ -119,5 +119,59 @@ const Vector2& Puyo::pos(void)
 void Puyo::pos(Vector2&& pos)
 {
     _pos = pos;
+}
+
+void Puyo::RotateMove(InputID id,Vector2 pos)
+{
+    if (id == InputID::Btn1)
+    {
+        if (pos.x == _pos1.x && pos.y > _pos1.y)
+        {
+            _pos2.x = _pos1.x - _size.x;
+            _pos2.y = _pos1.y;
+        }
+        else if (pos.x == _pos1.x && pos.y < _pos1.y)
+        {
+            _pos2.x = _pos1.x + _size.x;
+            _pos2.y = _pos1.y;
+        }
+        else if (pos.x > _pos1.x && pos.y == _pos1.y)
+        {
+            _pos2.x = _pos1.x;
+            _pos2.y = _pos1.y + _size.y;
+        }
+        else
+        {
+            _pos2.x = _pos1.x;
+            _pos2.y = _pos1.y - _size.x;
+
+        }
+    }
+    else if(id == InputID::Btn2)
+    {
+        if (pos.x == _pos1.x && pos.y > _pos1.y)
+        {
+            _pos2.x = _pos1.x + _size.x;
+            _pos2.y = _pos1.y;
+        }
+        else if (pos.x == _pos1.x && pos.y < _pos1.y)
+        {
+            _pos2.x = _pos1.x - _size.x;
+            _pos2.y = _pos1.y;
+        }
+        else if (pos.x > _pos1.x && pos.y == _pos1.y)
+        {
+            _pos2.x = _pos1.x;
+            _pos2.y = _pos1.y - _size.x;
+        }
+        else
+        {
+            _pos2.x = _pos1.x;
+            _pos2.y = _pos1.y + _size.y;
+        }
+    }
+    else
+    {
+    }
 }
 

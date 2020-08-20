@@ -55,6 +55,7 @@ public:
 	void pos(Vector2&& pos);
 private:
 	static Puyocolor _puyocolor;		//‚Õ‚æ‚ÌF
+	void RotateMove(InputID id,Vector2 pos);
 
 	Dirpermit _olddirparmit;
 	Dirpermit _dirparmit;
